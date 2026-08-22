@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Membership Pass | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .digital-pass-card {
+      background: linear-gradient(135deg, #1C1212 0%, #0F0F0F 100%);
+      border: 1px solid rgba(255, 59, 48, 0.4);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 25px rgba(255,59,48,0.15);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      max-width: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pass-qr-box {
+      background: #FFFFFF;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      display: inline-block;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Athlete Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-home"></i> Overview</a>
+        <a href="workout.html" class="menu-item"><i class="fas fa-clipboard-list"></i> My Workout Plan</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> My Diet Plan</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Fitness Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> My Attendance</a>
+
+        <span class="menu-category">Account & Coaching</span>
+        <a href="membership.html" class="menu-item active"><i class="fas fa-id-card"></i> Membership & Pass</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payment History</a>
+        <a href="trainer.html" class="menu-item"><i class="fas fa-user-ninja"></i> My Trainer</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Book Session</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Leave Feedback</a>
+        <a href="profile.html" class="menu-item"><i class="fas fa-user-cog"></i> My Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">M</div>
+          <div class="user-info">
+            <div class="name user-name-display">Preyal Modi</div>
+            <div class="role user-role-display">MEMBER</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Digital Gym Pass & Membership</h3>
+            <p>Show your digital QR barcode at the front desk for seamless check-in</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <div class="d-flex gap-4 flex-wrap">
+          
+          <!-- Digital Gym ID Card -->
+          <div class="digital-pass-card">
+            <div class="d-flex justify-between align-center mb-3">
+              <div class="brand-logo" style="font-size:1.2rem;">
+                <div class="logo-icon" style="width:30px;height:30px;font-size:0.8rem;"><i class="fas fa-dumbbell"></i></div>
+                <span>IRON<span class="accent">CORE</span></span>
+              </div>
+              <span class="badge badge-active" id="pass-status-badge">ACTIVE PASS</span>
+            </div>
+
+            <div class="text-center my-3">
+              <div class="pass-qr-box">
+                <!-- Visual Simulated QR Code -->
+                <svg width="150" height="150" viewBox="0 0 100 100" fill="#000000">
+                  <rect x="5" y="5" width="25" height="25" fill="#000"/>
+                  <rect x="10" y="10" width="15" height="15" fill="#FFF"/>
+                  <rect x="13" y="13" width="9" height="9" fill="#000"/>
+                  
+                  <rect x="70" y="5" width="25" height="25" fill="#000"/>
+                  <rect x="75" y="10" width="15" height="15" fill="#FFF"/>
+                  <rect x="78" y="13" width="9" height="9" fill="#000"/>
+                  
+                  <rect x="5" y="70" width="25" height="25" fill="#000"/>
+                  <rect x="10" y="75" width="15" height="15" fill="#FFF"/>
+                  <rect x="13" y="78" width="9" height="9" fill="#000"/>
+
+                  <!-- Data Dots -->
+                  <rect x="35" y="10" width="6" height="6"/>
+                  <rect x="45" y="20" width="6" height="6"/>
+                  <rect x="55" y="10" width="6" height="6"/>
+                  <rect x="35" y="35" width="6" height="6"/>
+                  <rect x="45" y="45" width="6" height="6"/>
+                  <rect x="55" y="35" width="6" height="6"/>
+                  <rect x="70" y="45" width="6" height="6"/>
+                  <rect x="80" y="55" width="6" height="6"/>
+                  <rect x="35" y="70" width="6" height="6"/>
+                  <rect x="45" y="80" width="6" height="6"/>
+                  <rect x="65" y="75" width="6" height="6"/>
+                  <rect x="80" y="70" width="6" height="6"/>
+                </svg>
+              </div>
+              <h3 style="font-size:1.3rem;margin-bottom:2px;" id="pass-member-name">Member Name</h3>
+              <p style="font-family:monospace;font-size:1.1rem;color:var(--accent);font-weight:700;" id="pass-member-code">IC-1001</p>
+            </div>
+
+            <div style="border-top:1px dashed var(--border-color);padding-top:16px;font-size:0.85rem;" class="d-flex flex-column gap-2">
+              <div class="d-flex justify-between">
+                <span class="text-muted">Membership Tier:</span>
+                <strong id="pass-plan-name">Pro Annual</strong>
+              </div>
+              <div class="d-flex justify-between">
+                <span class="text-muted">Valid Until:</span>
+                <strong id="pass-end-date" class="text-success">31 Dec 2026</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subscription Renewal Widget -->
+          <div class="glass-card flex-1" style="min-width:320px;">
+            <h3 class="mb-3" style="font-size:1.2rem;"><i class="fas fa-sync-alt text-accent"></i> Renew or Upgrade Tier</h3>
+            <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:20px;line-height:1.5;">
+              Keep your training streak alive! Select an extension package below to automatically renew your membership pass.
+            </p>
+
+            <form onsubmit="handleMemberSelfRenew(event)">
+              <div class="form-group">
+                <label>Select Renewal Plan</label>
+                <select id="member-renew-plan-select" name="plan_id" class="form-control" required></select>
+              </div>
+
+              <div class="form-group">
+                <label>Payment Method</label>
+                <select name="payment_method" class="form-control">
+                  <option value="UPI">UPI (Google Pay / PhonePe / Paytm)</option>
+                  <option value="Card">Credit / Debit Card</option>
+                  <option value="Cash">Cash at Reception</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100"><i class="fas fa-bolt"></i> Confirm & Renew Pass</button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    let currentMemberId = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['member']);
+      if (user) {
+        currentMemberId = user.details?.member_id;
+        loadMembershipData();
+      }
+    });
+
+    async function loadMembershipData() {
+      try {
+        const [memRes, planRes] = await Promise.all([
+          API.get('/members/get.php', { id: currentMemberId }),
+          API.get('/memberships/plans.php')
+        ]);
+
+        if (memRes.success && memRes.data) {
+          const p = memRes.data.profile;
+          const cp = memRes.data.current_plan;
+
+          document.getElementById('pass-member-name').textContent = p.name;
+          document.getElementById('pass-member-code').textContent = p.member_code;
+
+          if (cp) {
+            document.getElementById('pass-plan-name').textContent = cp.plan_name;
+            document.getElementById('pass-end-date').textContent = formatDate(cp.end_date);
+            document.getElementById('pass-status-badge').textContent = cp.status.toUpperCase();
+          }
+        }
+
+        if (planRes.success && planRes.data) {
+          const select = document.getElementById('member-renew-plan-select');
+          select.innerHTML = planRes.data.plans.map(p => 
+            `<option value="${p.id}">${escapeHtml(p.name)} - ${formatCurrency(p.price)} (${escapeHtml(p.duration)})</option>`
+          ).join('');
+        }
+      } catch (err) {
+        showToast('Error loading membership pass: ' + err.message, 'error');
+      }
+    }
+
+    async function handleMemberSelfRenew(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        member_id: currentMemberId,
+        plan_id: form.plan_id.value,
+        payment_method: form.payment_method.value
+      };
+      try {
+        const res = await API.post('/memberships/renew.php', data);
+        if (res.success) {
+          showToast(res.message, 'success');
+          loadMembershipData();
+        }
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | IRONCORE GYM</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Main Menu</span>
+        <a href="dashboard.html" class="menu-item active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="members.html" class="menu-item"><i class="fas fa-users"></i> Members</a>
+        <a href="trainers.html" class="menu-item"><i class="fas fa-user-ninja"></i> Trainers</a>
+        <a href="memberships.html" class="menu-item"><i class="fas fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payments</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Attendance</a>
+
+        <span class="menu-category">Fitness Modules</span>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workouts</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Plans</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+
+        <span class="menu-category">Communication & Reports</span>
+        <a href="announcements.html" class="menu-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Feedback & Reviews</a>
+        <a href="reports.html" class="menu-item"><i class="fas fa-file-invoice"></i> Reports & Export</a>
+        <a href="settings.html" class="menu-item"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">A</div>
+          <div class="user-info">
+            <div class="name user-name-display">Administrator</div>
+            <div class="role user-role-display">ADMIN</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted" title="Logout"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      
+      <!-- Top Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Admin Executive Portal</h3>
+            <p>Real-time analytics and gym operations overview</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <a href="appointments.html" class="header-action-btn" title="Pending Appointments">
+            <i class="fas fa-bell"></i>
+            <span class="dot-badge" id="header-notif-badge" style="display:none;"></span>
+          </a>
+          <button class="btn btn-primary btn-sm" onclick="window.location.href='members.html?action=add'">
+            <i class="fas fa-user-plus"></i> Add Member
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Body -->
+      <div class="page-body">
+        
+        <!-- KPI Statistic Cards Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Total Members</h4>
+              <div class="stat-value" id="stat-total-members">--</div>
+              <div class="stat-trend text-success"><i class="fas fa-arrow-up"></i> Active community</div>
+            </div>
+            <div class="stat-card-icon"><i class="fas fa-users"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Active Subscriptions</h4>
+              <div class="stat-value text-success" id="stat-active-members">--</div>
+              <div class="stat-trend text-muted"><span id="stat-expired-members">0</span> Expired</div>
+            </div>
+            <div class="stat-card-icon" style="color:var(--success);background:rgba(34,197,94,0.1);"><i class="fas fa-id-badge"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Today's Attendance</h4>
+              <div class="stat-value" id="stat-today-attendance">--</div>
+              <div class="stat-trend text-accent"><i class="fas fa-bolt"></i> Live Floor Check-ins</div>
+            </div>
+            <div class="stat-card-icon"><i class="fas fa-walking"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Monthly Revenue</h4>
+              <div class="stat-value text-accent" id="stat-monthly-revenue">--</div>
+              <div class="stat-trend text-muted"><span id="stat-total-trainers">5</span> Coaches</div>
+            </div>
+            <div class="stat-card-icon"><i class="fas fa-coins"></i></div>
+          </div>
+        </div>
+
+        <!-- Visual Analytics Charts Grid -->
+        <div class="charts-grid">
+          <div class="glass-card">
+            <div class="d-flex justify-between align-center mb-4">
+              <div>
+                <h3 style="font-size:1.15rem;">Monthly Revenue Growth</h3>
+                <p style="font-size:0.82rem;color:var(--text-muted);">Collections trend over the past 6 months</p>
+              </div>
+              <span class="badge badge-success"><i class="fas fa-chart-line"></i> Growing</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="admin-revenue-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <div class="d-flex justify-between align-center mb-4">
+              <div>
+                <h3 style="font-size:1.15rem;">Membership Distribution</h3>
+                <p style="font-size:0.82rem;color:var(--text-muted);">Active subscribers by plan tier</p>
+              </div>
+            </div>
+            <div class="chart-container" style="height:260px;">
+              <canvas id="admin-plan-chart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attendance & Quick Operations Section -->
+        <div class="glass-card">
+          <div class="d-flex justify-between align-center mb-4">
+            <div>
+              <h3 style="font-size:1.2rem;">Today's Live Check-Ins</h3>
+              <p style="font-size:0.85rem;color:var(--text-muted);">Real-time member presence on the gym floor</p>
+            </div>
+            <a href="attendance.html" class="btn btn-sm btn-outline">
+              <i class="fas fa-qrcode"></i> Open Attendance Scanner
+            </a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Membership Tier</th>
+                  <th>Check-In Time</th>
+                  <th>Check-Out Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="today-attendance-tbody">
+                <tr><td colspan="5" class="text-center"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="dashboard.html" class="bottom-nav-item active"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="members.html" class="bottom-nav-item"><i class="fas fa-users"></i><span>Members</span></a>
+    <a href="payments.html" class="bottom-nav-item"><i class="fas fa-receipt"></i><span>Payments</span></a>
+    <a href="reports.html" class="bottom-nav-item"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+    <a href="settings.html" class="bottom-nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['admin']);
+      if (user) {
+        Dashboard.loadAdminDashboard();
+      }
+    });
+  </script>
+</body>
+</html>

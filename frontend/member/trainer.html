@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Coach | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Athlete Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-home"></i> Overview</a>
+        <a href="workout.html" class="menu-item"><i class="fas fa-clipboard-list"></i> My Workout Plan</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> My Diet Plan</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Fitness Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> My Attendance</a>
+
+        <span class="menu-category">Account & Coaching</span>
+        <a href="membership.html" class="menu-item"><i class="fas fa-id-card"></i> Membership & Pass</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payment History</a>
+        <a href="trainer.html" class="menu-item active"><i class="fas fa-user-ninja"></i> My Trainer</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Book Session</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Leave Feedback</a>
+        <a href="profile.html" class="menu-item"><i class="fas fa-user-cog"></i> My Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">M</div>
+          <div class="user-info">
+            <div class="name user-name-display">Preyal Modi</div>
+            <div class="role user-role-display">MEMBER</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>My Personal Coach</h3>
+            <p>Assigned trainer profile, specialization, and 1-on-1 contact</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+          <a href="appointments.html" class="btn btn-primary btn-sm"><i class="fas fa-calendar-plus"></i> Book Consultation</a>
+        </div>
+      </header>
+
+      <div class="page-body">
+        <div class="glass-card" style="max-width:700px;padding:36px;">
+          <div class="d-flex align-center gap-4 mb-4 flex-wrap">
+            <div class="user-avatar" style="width:72px;height:72px;font-size:2rem;" id="coach-avatar">T</div>
+            <div>
+              <span class="badge badge-primary mb-1">CERTIFIED STRENGTH COACH</span>
+              <h2 style="font-size:1.8rem;color:#FFF;" id="coach-name">Rahul Patel</h2>
+              <p style="color:var(--accent);font-weight:600;font-size:0.95rem;" id="coach-spec">Strength & Hypertrophy Coach</p>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column gap-3 mb-4" style="border-top:1px solid var(--border-color);padding-top:20px;font-size:0.95rem;">
+            <div>
+              <strong class="text-muted">Experience:</strong>
+              <span id="coach-exp" style="margin-left:8px;color:#FFF;">8 Years in Competitive Bodybuilding & Strength</span>
+            </div>
+            <div>
+              <strong class="text-muted">Phone / Desk:</strong>
+              <span id="coach-phone" style="margin-left:8px;color:#FFF;">+91 98765 11111</span>
+            </div>
+            <div>
+              <strong class="text-muted">Email:</strong>
+              <span id="coach-email" style="margin-left:8px;color:#FFF;">rahul@ironcore.com</span>
+            </div>
+            <div>
+              <strong class="text-muted">Bio & Philosophy:</strong>
+              <p id="coach-bio" style="color:var(--text-secondary);margin-top:6px;line-height:1.6;">
+                Specializes in barbell mechanics, injury-prevention protocols, and personalized progressive overload periodization.
+              </p>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3">
+            <a href="appointments.html" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Schedule 1-on-1 Consultation</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['member']);
+      if (user) {
+        loadTrainerProfile(user.details?.member_id);
+      }
+    });
+
+    async function loadTrainerProfile(memberId) {
+      try {
+        const res = await API.get('/members/get.php', { id: memberId });
+        if (res.success && res.data) {
+          const tName = res.data.profile.trainer_name || 'Rahul Patel';
+          const tPhone = res.data.profile.trainer_phone || '+91 98765 11111';
+          const tSpec = res.data.profile.trainer_spec || 'Strength & Conditioning Coach';
+
+          document.getElementById('coach-name').textContent = tName;
+          document.getElementById('coach-avatar').textContent = tName.charAt(0);
+          document.getElementById('coach-phone').textContent = tPhone;
+          document.getElementById('coach-spec').textContent = tSpec;
+        }
+      } catch (err) {
+        showToast('Error loading coach details: ' + err.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

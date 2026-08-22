@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Library | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Main Menu</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="members.html" class="menu-item"><i class="fas fa-users"></i> Members</a>
+        <a href="trainers.html" class="menu-item"><i class="fas fa-user-ninja"></i> Trainers</a>
+        <a href="memberships.html" class="menu-item"><i class="fas fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payments</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Attendance</a>
+
+        <span class="menu-category">Fitness Modules</span>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workouts</a>
+        <a href="exercises.html" class="menu-item active"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Plans</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+
+        <span class="menu-category">Communication & Reports</span>
+        <a href="announcements.html" class="menu-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Feedback & Reviews</a>
+        <a href="reports.html" class="menu-item"><i class="fas fa-file-invoice"></i> Reports & Export</a>
+        <a href="settings.html" class="menu-item"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">A</div>
+          <div class="user-info">
+            <div class="name user-name-display">Administrator</div>
+            <div class="role user-role-display">ADMIN</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Exercise Library</h3>
+            <p>Comprehensive repository of movements, target muscles, and technical cues</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+          <button class="btn btn-primary btn-sm" onclick="Exercises.openAddModal()">
+            <i class="fas fa-plus"></i> Add New Exercise
+          </button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <!-- Category Filter Pills -->
+        <div class="d-flex gap-2 mb-4 flex-wrap">
+          <button class="btn btn-sm btn-primary filter-pill-btn" onclick="Exercises.setCategory('All', this)">All Categories</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Chest', this)">Chest</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Back', this)">Back</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Legs', this)">Legs</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Shoulders', this)">Shoulders</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Biceps', this)">Biceps</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Triceps', this)">Triceps</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Core', this)">Core</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Cardio', this)">Cardio</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-filter-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search exercises by name, muscle..." oninput="Exercises.filterSearch(this.value)">
+          </div>
+          <span class="badge badge-primary"><span id="exercises-total-count">0</span> Exercises in Catalog</span>
+        </div>
+
+        <!-- Exercise Cards Grid -->
+        <div class="exercise-grid" id="exercises-grid">
+          <div class="text-center w-100"><div class="spinner"></div></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Exercise Detail Modal -->
+  <div class="modal-overlay" id="exercise-info-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-ex-title">Exercise Name</h3>
+          <span class="badge badge-primary" id="modal-ex-category">Chest</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('exercise-info-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3"><strong>Primary Target:</strong> <span id="modal-ex-muscle" class="text-accent">Pectoralis</span></p>
+        <p class="mb-3"><strong>Difficulty Level:</strong> <span id="modal-ex-difficulty" class="badge badge-info">Intermediate</span></p>
+        
+        <div class="exercise-metrics-pills mb-4">
+          <div class="metric-pill-item">
+            <span class="lbl">Sets</span>
+            <span class="val" id="modal-ex-sets">4</span>
+          </div>
+          <div class="metric-pill-item">
+            <span class="lbl">Reps</span>
+            <span class="val" id="modal-ex-reps">8-10</span>
+          </div>
+          <div class="metric-pill-item">
+            <span class="lbl">Rest Interval</span>
+            <span class="val" id="modal-ex-rest">90 sec</span>
+          </div>
+        </div>
+
+        <h4 class="mb-2" style="font-size:1rem;">Execution Instructions & Form Cues:</h4>
+        <p id="modal-ex-instructions" style="font-size:0.92rem;line-height:1.6;color:var(--text-secondary);background:#121212;padding:16px;border-radius:var(--radius-sm);border:1px solid var(--border-color);"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('exercise-info-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Exercise Modal -->
+  <div class="modal-overlay" id="add-exercise-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fas fa-plus-circle text-accent"></i> Add New Exercise</h3>
+        <button class="modal-close-btn" onclick="closeModal('add-exercise-modal')">&times;</button>
+      </div>
+      <form id="add-exercise-form" onsubmit="Exercises.submitAddExercise(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Exercise Name *</label>
+            <input type="text" name="name" class="form-control" placeholder="e.g. Incline Dumbbell Press" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category</label>
+              <select name="category" class="form-control">
+                <option value="Chest">Chest</option>
+                <option value="Back">Back</option>
+                <option value="Legs">Legs</option>
+                <option value="Shoulders">Shoulders</option>
+                <option value="Biceps">Biceps</option>
+                <option value="Triceps">Triceps</option>
+                <option value="Core">Core</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Full Body">Full Body</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Difficulty</label>
+              <select name="difficulty" class="form-control">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Target Muscle Group *</label>
+            <input type="text" name="muscle_group" class="form-control" placeholder="Upper Pectoralis, Anterior Delts" required>
+          </div>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Sets</label>
+              <input type="number" name="sets" class="form-control" value="3" required>
+            </div>
+            <div class="form-group">
+              <label>Reps</label>
+              <input type="text" name="reps" class="form-control" value="10-12" required>
+            </div>
+            <div class="form-group">
+              <label>Rest</label>
+              <input type="text" name="rest_time" class="form-control" value="60 sec" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Form Instructions & Coaching Notes</label>
+            <textarea name="instructions" class="form-control" placeholder="Lie on 30-degree incline, retract shoulder blades, press upward smoothly..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-exercise-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Exercise</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/exercises.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['admin', 'trainer']);
+      if (user) {
+        Exercises.loadExercises();
+      }
+    });
+  </script>
+</body>
+</html>

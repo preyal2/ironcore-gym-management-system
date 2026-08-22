@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcements | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Trainer Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-chart-pie"></i> Overview</a>
+        <a href="members.html" class="menu-item"><i class="fas fa-users"></i> Assigned Members</a>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workout Plans</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Templates</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Floor Attendance</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+        <a href="announcements.html" class="menu-item active"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">T</div>
+          <div class="user-info">
+            <div class="name user-name-display">Coach Rahul</div>
+            <div class="role user-role-display">COACH</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Gym Announcements</h3>
+            <p>Read gym notices, updates, and events broadcasted by management</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        <div id="trainer-announcements-container" class="d-flex flex-column gap-3">
+          <div class="text-center"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['trainer']);
+      if (user) {
+        loadAnnouncements();
+      }
+    });
+
+    async function loadAnnouncements() {
+      const container = document.getElementById('trainer-announcements-container');
+      try {
+        const res = await API.get('/announcements/list.php');
+        if (res.success && res.data) {
+          const list = res.data.announcements || [];
+          if (list.length === 0) {
+            container.innerHTML = `<div class="empty-state"><h3>No announcements</h3></div>`;
+            return;
+          }
+          container.innerHTML = list.map(a => `
+            <div class="glass-card mb-3" style="padding:22px 28px;">
+              <div class="d-flex justify-between align-center mb-2">
+                <div class="d-flex align-center gap-2">
+                  <span class="badge badge-primary"><i class="fas fa-bullhorn"></i> ${escapeHtml(a.target_audience)}</span>
+                  <h4 style="font-size:1.15rem;">${escapeHtml(a.title)}</h4>
+                </div>
+                <span class="text-muted" style="font-size:0.8rem;">${formatDate(a.created_at)}</span>
+              </div>
+              <p style="font-size:0.92rem;line-height:1.6;color:var(--text-secondary);">${escapeHtml(a.message)}</p>
+              <p style="font-size:0.78rem;color:var(--text-muted);margin-top:10px;">Posted by: <strong>${escapeHtml(a.author_name || 'Admin')}</strong></p>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        container.innerHTML = `<div class="text-danger">Failed to load announcements.</div>`;
+      }
+    }
+  </script>
+</body>
+</html>

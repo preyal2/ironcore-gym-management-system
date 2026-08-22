@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Profile & Programming | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Trainer Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-chart-pie"></i> Overview</a>
+        <a href="members.html" class="menu-item active"><i class="fas fa-users"></i> Assigned Members</a>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workout Plans</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Templates</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Floor Attendance</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+        <a href="announcements.html" class="menu-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">T</div>
+          <div class="user-info">
+            <div class="name user-name-display">Coach Rahul</div>
+            <div class="role user-role-display">COACH</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3 id="client-name-title">Client Assessment Profile</h3>
+            <p>Programming, body composition metrics, and nutrition overview</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="members.html" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i> Back to Roster</a>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <!-- Member Hero Card -->
+        <div class="dashboard-hero-banner mb-4">
+          <div>
+            <span class="badge badge-primary mb-2" id="client-code-badge">IC-1001</span>
+            <h2 style="font-size:1.8rem;color:#FFF;" id="client-full-name">Member Name</h2>
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:4px;">
+              <i class="fas fa-bullseye text-accent"></i> Target: <strong id="client-goal-text">Goal</strong> • 
+              Level: <strong id="client-level-text">Beginner</strong>
+            </p>
+          </div>
+
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline btn-sm" onclick="openAssignDietModal()"><i class="fas fa-utensils"></i> Assign Diet Plan</button>
+            <button class="btn btn-primary btn-sm" onclick="Progress.openLogModal()"><i class="fas fa-tape"></i> Log Measurement</button>
+          </div>
+        </div>
+
+        <!-- Body Measurements & Weight Trend Chart -->
+        <div class="charts-grid mb-4">
+          <div class="glass-card">
+            <div class="d-flex justify-between align-center mb-4">
+              <h3 style="font-size:1.15rem;">Weight Progression Curve</h3>
+              <span class="badge badge-success">Chart.js</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="progress-weight-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="mb-4" style="font-size:1.15rem;">Physical Profile</h3>
+            <div class="d-flex flex-column gap-3" style="font-size:0.9rem;">
+              <div class="d-flex justify-between" style="border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                <span class="text-muted">Height:</span>
+                <strong id="client-height">-</strong>
+              </div>
+              <div class="d-flex justify-between" style="border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                <span class="text-muted">Starting Weight:</span>
+                <strong id="prog-start-weight">-</strong>
+              </div>
+              <div class="d-flex justify-between" style="border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                <span class="text-muted">Current Weight:</span>
+                <strong id="prog-current-weight" class="text-accent">-</strong>
+              </div>
+              <div class="d-flex justify-between" style="border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                <span class="text-muted">Net Weight Change:</span>
+                <strong id="prog-weight-diff">-</strong>
+              </div>
+              <div class="d-flex justify-between">
+                <span class="text-muted">Streak:</span>
+                <strong id="prog-streak-val" class="text-success">-</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anthropometric History Table -->
+        <div class="glass-card mb-4">
+          <h3 class="mb-4" style="font-size:1.15rem;">Body Circumference History</h3>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Weight</th>
+                  <th>Waist</th>
+                  <th>Chest</th>
+                  <th>Arms</th>
+                  <th>Legs</th>
+                  <th>Coaching Notes</th>
+                </tr>
+              </thead>
+              <tbody id="progress-history-tbody">
+                <tr><td colspan="7" class="text-center"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Log Measurement Modal -->
+  <div class="modal-overlay" id="log-progress-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fas fa-tape text-accent"></i> Log Client Measurements</h3>
+        <button class="modal-close-btn" onclick="closeModal('log-progress-modal')">&times;</button>
+      </div>
+      <form id="log-progress-form" onsubmit="Progress.submitLogProgress(event)">
+        <input type="hidden" name="member_id" id="modal-member-id">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Weight (kg) *</label>
+              <input type="number" step="0.1" name="weight" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" name="record_date" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Waist (in)</label>
+              <input type="number" step="0.1" name="waist" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Chest (in)</label>
+              <input type="number" step="0.1" name="chest" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Arms (in)</label>
+              <input type="number" step="0.1" name="arms" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Legs (in)</label>
+              <input type="number" step="0.1" name="legs" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Coaching Notes</label>
+            <input type="text" name="notes" class="form-control" placeholder="Progressing well, good core engagement">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('log-progress-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Assign Diet Modal -->
+  <div class="modal-overlay" id="assign-diet-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fas fa-utensils text-accent"></i> Assign Custom Diet Template</h3>
+        <button class="modal-close-btn" onclick="closeModal('assign-diet-modal')">&times;</button>
+      </div>
+      <form onsubmit="handleAssignDiet(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Select Diet Template</label>
+            <select name="diet_plan_id" id="diet-template-select" class="form-control" required></select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('assign-diet-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Assign Diet Plan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/progress.js"></script>
+  <script>
+    let currentMemberId = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['trainer', 'admin']);
+      if (user) {
+        const urlParams = new URLSearchParams(window.location.search);
+        currentMemberId = urlParams.get('id') || 1;
+        document.getElementById('modal-member-id').value = currentMemberId;
+
+        loadClientProfile(currentMemberId);
+        Progress.loadMemberProgress(currentMemberId);
+      }
+    });
+
+    async function loadClientProfile(memberId) {
+      try {
+        const res = await API.get('/members/get.php', { id: memberId });
+        if (res.success && res.data) {
+          const p = res.data.profile;
+          document.getElementById('client-name-title').textContent = `${p.name}'s Profile`;
+          document.getElementById('client-full-name').textContent = p.name;
+          document.getElementById('client-code-badge').textContent = p.member_code;
+          document.getElementById('client-goal-text').textContent = p.fitness_goal;
+          document.getElementById('client-level-text').textContent = p.fitness_level;
+          document.getElementById('client-height').textContent = p.height ? `${p.height} cm` : 'Not recorded';
+        }
+      } catch (err) {
+        showToast('Failed to load profile: ' + err.message, 'error');
+      }
+    }
+
+    async function openAssignDietModal() {
+      const res = await API.get('/diet/list.php');
+      const select = document.getElementById('diet-template-select');
+      if (select && res.data) {
+        select.innerHTML = res.data.plans.map(d => `<option value="${d.id}">${escapeHtml(d.name)} (${d.target_calories} kcal - ${escapeHtml(d.goal)})</option>`).join('');
+      }
+      openModal('assign-diet-modal');
+    }
+
+    async function handleAssignDiet(e) {
+      e.preventDefault();
+      const planId = e.target.diet_plan_id.value;
+      try {
+        const res = await API.post('/diet/assign.php', {
+          member_id: currentMemberId,
+          diet_plan_id: planId
+        });
+        if (res.success) {
+          showToast(res.message, 'success');
+          closeModal('assign-diet-modal');
+        }
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

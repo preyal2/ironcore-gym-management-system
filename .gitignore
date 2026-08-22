@@ -1,0 +1,15 @@
+# Runtime SQLite DB files (auto-generated on local run)
+backend/config/*.sqlite
+backend/config/*.sqlite-wal
+backend/config/*.sqlite-shm
+backend/config/*.sqlite-journal
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

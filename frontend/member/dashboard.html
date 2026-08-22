@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard | IRONCORE GYM</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Athlete Portal</span>
+        <a href="dashboard.html" class="menu-item active"><i class="fas fa-home"></i> Overview</a>
+        <a href="workout.html" class="menu-item"><i class="fas fa-clipboard-list"></i> My Workout Plan</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> My Diet Plan</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Fitness Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> My Attendance</a>
+
+        <span class="menu-category">Account & Coaching</span>
+        <a href="membership.html" class="menu-item"><i class="fas fa-id-card"></i> Membership & Pass</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payment History</a>
+        <a href="trainer.html" class="menu-item"><i class="fas fa-user-ninja"></i> My Trainer</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Book Session</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Leave Feedback</a>
+        <a href="profile.html" class="menu-item"><i class="fas fa-user-cog"></i> My Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">M</div>
+          <div class="user-info">
+            <div class="name user-name-display">Preyal Modi</div>
+            <div class="role user-role-display">MEMBER</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Welcome back, <span id="member-greeting-name">Athlete</span>!</h3>
+            <p>Crush your fitness milestones today</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+          <a href="notifications.html" class="header-action-btn">
+            <i class="fas fa-bell"></i>
+            <span class="dot-badge" id="header-notif-badge" style="display:none;"></span>
+          </a>
+          <button class="btn btn-primary btn-sm" id="quick-checkin-btn" onclick="Attendance.quickCheckIn()">
+            <i class="fas fa-qrcode"></i> Digital Check-In
+          </button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <!-- Active Plan Banner & Renewal Countdown -->
+        <div class="dashboard-hero-banner">
+          <div>
+            <span class="badge badge-active mb-2" id="member-plan-status">ACTIVE MEMBERSHIP</span>
+            <h2 style="font-size:1.8rem;color:#FFF;margin-bottom:6px;" id="member-plan-name">Pro Annual Membership</h2>
+            <p style="color:var(--text-secondary);font-size:0.9rem;">
+              Personal Coach: <strong id="member-trainer-name" class="text-accent">Rahul Patel</strong> • Unlimited Floor Access
+            </p>
+          </div>
+
+          <div class="d-flex align-center gap-4 flex-wrap">
+            <div class="countdown-box">
+              <div class="days-num" id="countdown-days-num">--</div>
+              <div class="days-lbl">Days Left in Plan</div>
+            </div>
+            <a href="membership.html" class="btn btn-outline btn-sm"><i class="fas fa-sync-alt"></i> Renew / Upgrade</a>
+          </div>
+        </div>
+
+        <!-- Metric Cards Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Current Weight</h4>
+              <div class="stat-value text-accent" id="member-current-weight">-- KG</div>
+              <div class="stat-trend text-success"><i class="fas fa-check"></i> Logged recently</div>
+            </div>
+            <div class="stat-card-icon"><i class="fas fa-weight"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Workout Sessions</h4>
+              <div class="stat-value" id="member-total-workouts">--</div>
+              <div class="stat-trend text-muted">Completed logged</div>
+            </div>
+            <div class="stat-card-icon"><i class="fas fa-dumbbell"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <h4>Gym Attendance Streak</h4>
+              <div class="stat-value text-success" id="member-streak-days">-- Days</div>
+              <div class="stat-trend text-success"><i class="fas fa-fire"></i> Consistent effort</div>
+            </div>
+            <div class="stat-card-icon" style="color:var(--success);background:rgba(34,197,94,0.1);"><i class="fas fa-fire-alt"></i></div>
+          </div>
+        </div>
+
+        <!-- Weight Recomposition Trend Chart -->
+        <div class="glass-card mb-4">
+          <div class="d-flex justify-between align-center mb-4">
+            <div>
+              <h3 style="font-size:1.15rem;">Weight Progress Curve</h3>
+              <p style="font-size:0.82rem;color:var(--text-muted);">Historical body weight changes</p>
+            </div>
+            <a href="progress.html" class="btn btn-sm btn-outline"><i class="fas fa-plus"></i> Add Measurement</a>
+          </div>
+          <div class="chart-container">
+            <canvas id="member-weight-trend-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- Today's Assigned Workout Routine -->
+        <div class="glass-card">
+          <div class="d-flex justify-between align-center mb-4">
+            <div>
+              <h3 style="font-size:1.15rem;" id="member-today-workout-title">TODAY'S SCHEDULED WORKOUT</h3>
+              <p style="font-size:0.82rem;color:var(--text-muted);">Complete each movement and click Done to log completion</p>
+            </div>
+            <a href="workout.html" class="btn btn-sm btn-outline">Full Weekly Split</a>
+          </div>
+
+          <div id="member-today-workout-list" class="d-flex flex-column gap-2">
+            <div class="text-center"><div class="spinner"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="dashboard.html" class="bottom-nav-item active"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="workout.html" class="bottom-nav-item"><i class="fas fa-dumbbell"></i><span>Workout</span></a>
+    <a href="diet.html" class="bottom-nav-item"><i class="fas fa-apple-alt"></i><span>Diet</span></a>
+    <a href="progress.html" class="bottom-nav-item"><i class="fas fa-chart-line"></i><span>Progress</span></a>
+    <a href="membership.html" class="bottom-nav-item"><i class="fas fa-id-card"></i><span>Pass</span></a>
+  </nav>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/workouts.js"></script>
+  <script src="../js/attendance.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['member']);
+      if (user) {
+        Dashboard.loadMemberDashboard(user);
+      }
+    });
+  </script>
+</body>
+</html>

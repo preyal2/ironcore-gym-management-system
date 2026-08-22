@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Library | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Trainer Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-chart-pie"></i> Overview</a>
+        <a href="members.html" class="menu-item"><i class="fas fa-users"></i> Assigned Members</a>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workout Plans</a>
+        <a href="exercises.html" class="menu-item active"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Templates</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Floor Attendance</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+        <a href="announcements.html" class="menu-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">T</div>
+          <div class="user-info">
+            <div class="name user-name-display">Coach Rahul</div>
+            <div class="role user-role-display">COACH</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Movement & Exercise Database</h3>
+            <p>Reference correct form cues, muscle target zones, and coaching cues</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        <div class="d-flex gap-2 mb-4 flex-wrap">
+          <button class="btn btn-sm btn-primary filter-pill-btn" onclick="Exercises.setCategory('All', this)">All</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Chest', this)">Chest</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Back', this)">Back</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Legs', this)">Legs</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Shoulders', this)">Shoulders</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Biceps', this)">Biceps</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Triceps', this)">Triceps</button>
+          <button class="btn btn-sm btn-secondary filter-pill-btn" onclick="Exercises.setCategory('Core', this)">Core</button>
+        </div>
+
+        <div class="search-filter-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search exercises..." oninput="Exercises.filterSearch(this.value)">
+          </div>
+        </div>
+
+        <div class="exercise-grid" id="exercises-grid">
+          <div class="text-center w-100"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Exercise Detail Modal -->
+  <div class="modal-overlay" id="exercise-info-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-ex-title">Exercise</h3>
+          <span class="badge badge-primary" id="modal-ex-category">Category</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('exercise-info-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-3"><strong>Primary Target:</strong> <span id="modal-ex-muscle" class="text-accent">Muscle</span></p>
+        <p class="mb-3"><strong>Difficulty:</strong> <span id="modal-ex-difficulty" class="badge badge-info">Level</span></p>
+        <div class="exercise-metrics-pills mb-4">
+          <div class="metric-pill-item"><span class="lbl">Sets</span><span class="val" id="modal-ex-sets">-</span></div>
+          <div class="metric-pill-item"><span class="lbl">Reps</span><span class="val" id="modal-ex-reps">-</span></div>
+          <div class="metric-pill-item"><span class="lbl">Rest</span><span class="val" id="modal-ex-rest">-</span></div>
+        </div>
+        <h4 class="mb-2" style="font-size:1rem;">Instructions & Cues:</h4>
+        <p id="modal-ex-instructions" style="font-size:0.92rem;line-height:1.6;color:var(--text-secondary);background:#121212;padding:16px;border-radius:var(--radius-sm);"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('exercise-info-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/exercises.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['trainer']);
+      if (user) {
+        Exercises.loadExercises();
+      }
+    });
+  </script>
+</body>
+</html>
