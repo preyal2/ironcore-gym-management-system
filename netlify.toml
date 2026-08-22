@@ -1,0 +1,13 @@
+# Netlify configuration for IRONCORE GYM
+[build]
+  publish = "frontend"
+
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
+  status = 200
