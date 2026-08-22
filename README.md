@@ -1,164 +1,220 @@
-# 🏋️ IRONCORE — Premium Full-Stack Gym Management System
+# 🏋️ IRONCORE — Enterprise Gym Management & Fitness Ecosystem
 
-**IRONCORE** is a full-stack, enterprise-grade Gym Management & Fitness Platform designed for modern fitness centers, personal trainers, and athletes. Built with a clean separation of concerns, beginner-friendly codebase, and a dark aesthetic UI.
+<div align="center">
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-ironcoregym7.netlify.app-FF3B30?style=for-the-badge)](https://ironcoregym7.netlify.app/)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://ironcoregym7.netlify.app/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+<br>
+
+**A full-stack, role-governed Gym Management & Athlete Performance Tracking Platform designed for modern fitness centers, personal trainers, and members.**
+
+[Explore Live Demo 🚀](https://ironcoregym7.netlify.app/) • [Report Bug 🐛](https://github.com/preyal2/ironcore-gym-management-system/issues) • [Request Feature 💡](https://github.com/preyal2/ironcore-gym-management-system/issues)
+
+</div>
 
 ---
 
-## 📁 Architecture & File Structure
+## 🌟 Live Preview
+
+> 🔗 **Live Website URL**: **[https://ironcoregym7.netlify.app/](https://ironcoregym7.netlify.app/)**  
+> *Check out the fully animated landing page, pricing calculator, and role-based portal navigation online.*
+
+---
+
+## 📖 Project Overview
+
+**IRONCORE** is a decoupled 3-tier enterprise fitness management system built to automate daily gym operations, member onboarding, personal training assignments, attendance tracking, and financial analytics. 
+
+Engineered with clean architectural boundaries between **Presentation (HTML5/CSS3/Vanilla JS)**, **Business Logic (PHP 8 REST APIs with PDO)**, and **Data Storage (MySQL relational schema with automatic SQLite dev fallback)**.
+
+---
+
+## 🎯 Key Capabilities & Role-Based Portals
+
+### 👑 1. Executive Admin Portal (15 Pages)
+- **Real-Time Analytics Dashboard**: Live KPI counters, monthly revenue growth curve (Chart.js), dynamic gym capacity gauge, and attendance trends.
+- **Member Management**: Comprehensive CRUD operations, search & multi-parameter filter (by plan, gender, goal, status), member profile inspector.
+- **Trainer & Staff Directory**: Trainer onboarding, client allocation matrix, certification records.
+- **Membership & Billing Engine**: Plan lifecycle management, auto-renewals, offline payment logging, and instant printable tax receipts.
+- **Digital QR & Turnstile Terminal**: Simulated check-in terminal with instant entry/exit logging and live floor capacity counter.
+- **Reporting & Auditing**: 1-click CSV report exports for member rosters, revenue breakdowns, and attendance logs.
+- **Broadcast Announcements & Review Moderation**: Global noticeboard with priority tags and member feedback aggregator.
+
+### 🥊 2. Personal Trainer Portal (11 Pages)
+- **Assigned Client Roster**: Direct access to assigned athletes, fitness goals, and intake metrics.
+- **Interactive Workout Builder**: Day-by-day training routine creator with exercise catalog linking, set/rep/rest configurations.
+- **Diet & Nutrition Planner**: Caloric target matrix and macronutrient distributions (Proteins, Carbs, Fats) across daily meals.
+- **Client Progress Monitor**: Anthropometric logs (Weight, Waist, Chest, Arms, Legs) with milestone tracking.
+- **1-on-1 Appointment Management**: Session request approval, decline, and scheduling workflow.
+
+### 🏃 3. Athlete & Member Portal (13 Pages)
+- **Personal Athlete Hub**: Active membership countdown banner, daily workout plan preview, and quick gym check-in.
+- **Digital Membership Pass**: Barcode pass generator, expiry tracker, and self-service plan renewal dialog.
+- **Dynamic Workout Tracker**: Step-by-step day schedule with interactive checkbox completion state for every set.
+- **Nutrition Matrix**: Meal timings, food item lists, and macro breakdown per meal.
+- **Body Recomposition Curves**: Weight and circumference visual analytics powered by Chart.js.
+- **Coach Consultations**: 1-click coaching session booking for form checks and nutrition reviews.
+
+---
+
+## 🔑 Demo Login Credentials
+
+The application features **1-Click Quick Fill Demo Buttons** on the login page for instant role evaluation:
+
+| Role | Portal URL | Demo Email | Password | Access Scope |
+| :--- | :--- | :--- | :--- | :--- |
+| **Admin** | `/frontend/admin/dashboard.html` | `admin@ironcore.com` | `admin123` | Full financial, membership, trainer, and reporting control |
+| **Trainer** | `/frontend/trainer/dashboard.html` | `trainer@ironcore.com` | `trainer123` | Assigned clients, routine builder, diet plans, consultations |
+| **Member** | `/frontend/member/dashboard.html` | `member@ironcore.com` | `member123` | Workout logs, meal schedule, digital pass, progress charts |
+
+---
+
+## 📁 System Architecture & Directory Structure
 
 ```text
 IRONCORE-GYM/
 │
-├── frontend/                     # Client Presentation Layer (HTML5, CSS3, Vanilla JS)
+├── frontend/                     # Presentation Layer (Client-Side)
 │   ├── css/
-│   │   ├── style.css             # Core design system & CSS variables
-│   │   ├── landing.css           # Public landing page styles
-│   │   ├── auth.css              # Login & registration split card
-│   │   ├── dashboard.css         # Sidebar, top header, KPI statistics
-│   │   ├── forms.css             # Inputs, selects, filters
-│   │   ├── tables.css            # Dark data tables & action icons
+│   │   ├── style.css             # Core design system tokens, themes, & variables
+│   │   ├── landing.css           # Hero section, feature cards, pricing tables
+│   │   ├── auth.css              # Glassmorphic login & registration split cards
+│   │   ├── dashboard.css         # Collapsible sidebar, stats counters, metric grids
+│   │   ├── forms.css             # Input groups, select controls, search filters
+│   │   ├── tables.css            # Dark mode data tables & action icons
 │   │   ├── cards.css             # Exercise & routine module cards
-│   │   ├── modal.css             # Dialogs & printable receipts
-│   │   └── responsive.css        # Mobile bottom navigation & media queries
+│   │   ├── modal.css             # Glass modals & printable invoice templates
+│   │   └── responsive.css        # Mobile bottom nav bar & responsive breakpoints
 │   ├── js/
-│   │   ├── api.js                # Unified Fetch client
-│   │   ├── main.js               # Global UI, toasts, theme toggles
-│   │   ├── auth.js               # Session guard & quick demo fill
-│   │   ├── charts.js             # Chart.js visualization engine
-│   │   ├── dashboard.js          # KPI stats loader
-│   │   ├── members.js            # Members CRUD & filter
-│   │   ├── trainers.js           # Trainers management
-│   │   ├── memberships.js        # Plans & renewals
-│   │   ├── payments.js           # Billing & receipt print
-│   │   ├── attendance.js         # QR terminal & check-ins
-│   │   ├── workouts.js           # Routine & day schedule
-│   │   ├── exercises.js          # Movement library
-│   │   ├── diet.js               # Daily meal templates
-│   │   ├── progress.js           # Weight & anthropometrics
-│   │   ├── appointments.js       # 1-on-1 PT bookings
-│   │   ├── notifications.js      # Alerts & reminders
-│   │   └── reports.js            # CSV exports & print
-│   ├── admin/                    # Admin Portal Pages (15 pages)
-│   ├── trainer/                  # Trainer Portal Pages (11 pages)
-│   ├── member/                   # Member Portal Pages (13 pages)
+│   │   ├── api.js                # Centralized Fetch API client with automatic baseUrl
+│   │   ├── main.js               # Global UI utilities, theme engine, toast notifications
+│   │   ├── auth.js               # Session guard, authentication & quick-fill handler
+│   │   ├── charts.js             # Chart.js visualization wrappers
+│   │   ├── dashboard.js          # Metric aggregation controller
+│   │   ├── members.js            # Member lifecycle & search filter controller
+│   │   ├── trainers.js           # Trainer management controller
+│   │   ├── memberships.js        # Plan subscription & renewal controller
+│   │   ├── payments.js           # Invoicing & printable receipt engine
+│   │   ├── attendance.js         # Digital check-in & simulated QR terminal
+│   │   ├── workouts.js           # Routine & day schedule tracker
+│   │   ├── exercises.js          # Movement library & muscle group filter
+│   │   ├── diet.js               # Meal planner & macro calculator
+│   │   ├── progress.js           # Anthropometric logs & streak calculator
+│   │   ├── appointments.js       # 1-on-1 PT booking & approval workflow
+│   │   ├── notifications.js      # Alert badge & notification dropdown
+│   │   └── reports.js            # Client-side CSV export generator
+│   ├── admin/                    # Admin Portal Views (15 HTML Views)
+│   ├── trainer/                  # Trainer Portal Views (11 HTML Views)
+│   ├── member/                   # Member Portal Views (13 HTML Views)
 │   ├── index.html                # Public Landing Page
-│   ├── login.html                # Role Portal Login Page
-│   └── register.html             # Member Registration Page
+│   ├── login.html                # Multi-Role Portal Authentication View
+│   └── register.html             # Member Self-Onboarding View
 │
-├── backend/                      # Server Layer (PHP 8+ REST JSON APIs)
+├── backend/                      # Application Layer (PHP 8 REST APIs)
 │   ├── config/
-│   │   ├── database.php          # Dual MySQL / SQLite PDO abstraction
-│   │   └── response.php          # JSON handler & session guards
-│   ├── auth/                     # Login, register, logout, session
-│   ├── members/                  # Members CRUD endpoints
-│   ├── trainers/                 # Trainers CRUD endpoints
-│   ├── memberships/              # Plan management & renewal APIs
-│   ├── payments/                 # Invoicing & printable receipt APIs
-│   ├── attendance/               # 1-click & QR check-in/out APIs
-│   ├── workouts/                 # Routines & set completions
-│   ├── exercises/                # Exercise repository APIs
-│   ├── diet/                     # Nutrition & meal plan APIs
-│   ├── progress/                 # Body measurement logs
-│   ├── appointments/             # Booking & approval endpoints
-│   ├── notifications/            # Alerts & read status APIs
-│   ├── announcements/            # Broadcast news APIs
-│   ├── feedback/                 # Rating & review APIs
-│   └── reports/                  # Aggregation & CSV data endpoints
+│   │   ├── database.php          # PDO abstraction (MySQL + SQLite dev fallback)
+│   │   └── response.php          # JSON serialization, CORS, & session guards
+│   ├── auth/                     # login.php, logout.php, register.php, session.php
+│   ├── members/                  # list.php, get.php, add.php, update.php, delete.php
+│   ├── trainers/                 # list.php, get.php, add.php, update.php, delete.php
+│   ├── memberships/              # list.php, get.php, add.php, plans.php, renew.php
+│   ├── payments/                 # list.php, get.php, add.php, receipt.php
+│   ├── attendance/               # today.php, checkin.php, checkout.php, history.php
+│   ├── workouts/                 # list.php, get.php, add.php, update.php, complete.php
+│   ├── exercises/                # list.php, get.php, add.php, update.php, delete.php
+│   ├── diet/                     # list.php, get.php, add.php, assign.php
+│   ├── progress/                 # list.php, summary.php, add.php
+│   ├── appointments/             # list.php, create.php, approve.php, reject.php
+│   ├── notifications/            # list.php, create.php, read.php
+│   ├── announcements/            # list.php, add.php, delete.php
+│   ├── feedback/                 # list.php, add.php, delete.php
+│   └── reports/                  # revenue.php, attendance.php, members.php, payments.php
 │
-└── database/                     # Relational Database Layer
-    ├── schema.sql                # 19 normalized tables DDL
-    ├── seed.sql                  # Comprehensive realistic seed data
-    └── ironcore_gym.sql          # All-in-one import file for phpMyAdmin
+└── database/                     # Data Layer
+    ├── schema.sql                # Normalized 19 tables DDL with foreign keys
+    ├── seed.sql                  # Comprehensive sample data (20 members, 5 trainers)
+    └── ironcore_gym.sql          # Single-file import script for phpMyAdmin
 ```
 
 ---
 
-## 🔑 Demo Account Credentials
+## ⚡ Quick Start & Local Installation
 
-| Role | Email Address | Password | Description |
-| :--- | :--- | :--- | :--- |
-| **Admin** | `admin@ironcore.com` | `admin123` | Full access to gym finances, members, staff, and reports |
-| **Trainer** | `trainer@ironcore.com` | `trainer123` | Assigned clients, workout programming, consultations |
-| **Member** | `member@ironcore.com` | `member123` | Personal routine, nutrition chart, attendance, progress |
+### Method 1: Zero-Config Standalone PHP Server (Fastest)
 
-> 💡 *The login page includes 1-click Quick Demo Fill buttons for immediate evaluation.*
+No Apache or XAMPP installation required! Run directly using the built-in PHP development server:
 
----
-
-## 🚀 Quick Start Guide
-
-### Option A: Running with XAMPP (Standard Local Setup)
-
-1. **Move files into XAMPP**:
-   Copy the `IRONCORE-GYM` folder into your XAMPP web root:
-   ```text
-   C:\xampp\htdocs\IRONCORE-GYM\
-   ```
-2. **Start Apache & MySQL**:
-   Open XAMPP Control Panel and click **Start** for Apache and MySQL.
-3. **Import Database**:
-   - Open browser: `http://localhost/phpmyadmin`
-   - Create a database named `ironcore_gym`.
-   - Click **Import** and upload `database/ironcore_gym.sql`.
-4. **Launch Application**:
-   Open `http://localhost/IRONCORE-GYM/frontend/index.html` in your browser.
-
----
-
-### Option B: Running via Standalone PHP Built-in Server
-
-If you don't have XAMPP installed, you can run IRONCORE with PHP directly:
 ```bash
-# Navigate to the project root
-cd C:\Users\deepm\.gemini\antigravity-ide\scratch\IRONCORE-GYM
+# 1. Clone the repository
+git clone https://github.com/preyal2/ironcore-gym-management-system.git
 
-# Start the PHP built-in web server
+# 2. Enter project directory
+cd ironcore-gym-management-system
+
+# 3. Start the PHP server
 php -S 127.0.0.1:8000
 ```
-Open `http://127.0.0.1:8000/frontend/index.html` in your web browser.  
-*(Database auto-detects MySQL; if MySQL is offline, it transparently initializes a local SQLite database with full sample data).*
+👉 Open your browser at: **`http://127.0.0.1:8000/frontend/index.html`**  
+*(The backend automatically creates and seeds a local SQLite database if MySQL is not running).*
 
 ---
 
-## 🌟 Key Features Summary
+### Method 2: Standard XAMPP Setup (Production Workflow)
 
-1. **Role-Based Access Control (RBAC)**: Distinct views for Admin, Trainer, and Member with session protection.
-2. **Interactive QR Terminal & Attendance**: Real-time floor capacity, 1-click check-ins, and streak calculation.
-3. **Digital Membership Cards**: Instant barcode generation, countdown badges, and self-service renewals.
-4. **Workout Routine Scheduler**: Day-by-day training splits with live set-completion check-offs.
-5. **Nutrition & Macro Matrix**: Meal timings, calorie targets, and protein/carb/fat breakdowns.
-6. **Chart.js Visualizations**: Revenue growth, attendance trends, plan popularity, and body recomposition curves.
-7. **Printable Invoices & Receipts**: Formatted gym fee slips ready for instant browser printing.
-8. **CSV Reports Export**: 1-click member and financial exports for auditing.
-9. **Dark Premium Gym Theme**: Sleek UI with red flame accents, floating cards, and mobile bottom navigation.
+1. **Copy to Web Root**:
+   Clone or copy the project folder into your XAMPP `htdocs` directory:
+   ```text
+   C:\xampp\htdocs\ironcore-gym-management-system\
+   ```
+2. **Start Services**:
+   Open XAMPP Control Panel and click **Start** for **Apache** and **MySQL**.
+3. **Import Database**:
+   - Open **`http://localhost/phpmyadmin`**
+   - Create a new database named **`ironcore_gym`**
+   - Click **Import** tab -> Select **`database/ironcore_gym.sql`** -> Click **Go**
+4. **Launch Application**:
+   - Navigate to: **`http://localhost/ironcore-gym-management-system/frontend/index.html`**
 
 ---
 
-## 🎓 College Viva Voce Q&A Cheat Sheet
+## 🎓 College Viva Voce & Technical Defense Cheat Sheet
 
-### Q1: What is the architecture of the IRONCORE project?
-**Answer**: IRONCORE utilizes a **3-tier decoupled architecture**:
-- **Presentation Layer (Frontend)**: Pure HTML5, Vanilla CSS3 (Custom Design System with CSS variables), and Vanilla JavaScript utilizing the `Fetch API`.
-- **Application Layer (Backend)**: PHP 8+ structured as modular REST JSON APIs with PDO database abstraction and secure session cookies.
-- **Data Layer (Database)**: MySQL relational database with 19 normalized tables enforcing foreign key constraints and indexed lookups.
+### Q1: What architectural pattern does IRONCORE implement?
+**Answer**: IRONCORE implements a decoupled **3-Tier Client-Server Architecture**:
+- **Presentation Tier**: Pure HTML5, modular CSS3 (CSS custom properties, glassmorphic layout), and Vanilla JS ES6 using standard `Fetch API` and `Chart.js`.
+- **Application Tier**: Stateless PHP 8+ REST JSON endpoints communicating exclusively via JSON payloads, protected with server-side session cookies.
+- **Data Tier**: Relational schema across 19 normalized tables utilizing Foreign Keys with `CASCADE` & `SET NULL` integrity constraints.
 
-### Q2: Why did you separate Frontend and Backend into different directories?
-**Answer**: Separating `frontend/` and `backend/` follows the **Single Responsibility Principle** and modern API-driven development. The backend exclusively outputs JSON responses, making it reusable for web interfaces, mobile apps, or third-party integrations without rewriting business logic.
+### Q2: How does the system handle database portability between MySQL and SQLite?
+**Answer**: The database connection wrapper in [`backend/config/database.php`](backend/config/database.php) uses PHP Data Objects (PDO). It attempts a MySQL socket connection on port 3306. If unavailable, it transparently falls back to an SQLite PDO driver and executes the SQL schema with automated dialect translation (`ENUM` -> `TEXT`, `AUTO_INCREMENT` -> `AUTOINCREMENT`, `DATEDIFF` -> `julianday`), ensuring zero configuration for evaluators.
 
-### Q3: How is user authentication and role authorization handled?
+### Q3: How is authentication and Role-Based Access Control (RBAC) enforced?
 **Answer**:
-- Passwords are encrypted using PHP's native `password_hash()` with the strong **BCrypt** algorithm (`PASSWORD_DEFAULT`).
-- On login, a secure server-side session stores the user's ID and role (`admin`, `trainer`, `member`).
-- Each backend API invokes `require_auth(['admin'])` or `require_role()` to verify that the requesting session has the required privilege before executing queries.
+- Passwords are encrypted using PHP's native `password_hash()` implementing the **BCrypt** algorithm (`PASSWORD_BCRYPT`).
+- On authenticated login, a server session assigns role tokens (`admin`, `trainer`, `member`).
+- Each API invokes `require_auth(['admin'])` or `require_auth(['trainer'])` before executing queries to prevent privilege escalation.
 
-### Q4: How does the system handle database portability between MySQL and local testing?
-**Answer**: The database connection wrapper in `backend/config/database.php` tests for an active MySQL connection on port 3306. If MySQL is available, it uses MySQL; if running in a standalone development environment without XAMPP, it seamlessly falls back to an SQLite PDO database initialized from `ironcore_gym.sql`.
-
-### Q5: How are financial receipts and report exports implemented?
+### Q4: How are financial receipts and analytical exports generated?
 **Answer**:
-- Payment receipts use CSS `@media print` rules that isolate the printable receipt component while hiding navigation elements.
-- Reports generate dynamic in-memory CSV blobs using `new Blob([csv], { type: 'text/csv' })` and trigger client-side file downloads without requiring third-party PDF or Excel libraries.
+- Payment receipts utilize `@media print` CSS style rules that isolate the receipt voucher DOM and strip all navigation headers for printing.
+- Reports generate dynamic CSV streams in JavaScript using `new Blob([csv], { type: 'text/csv' })` and invoke client-side download triggers without requiring third-party PDF/Excel server dependencies.
 
 ---
 
-**Developed with ❤️ for IronCore Fitness Systems**
+## 🛡️ License
+
+This project is licensed under the **MIT License** — feel free to use, modify, and distribute for academic and commercial purposes.
+
+---
+
+<div align="center">
+
+**Developed with ❤️ by [Preyal Modi](https://github.com/preyal2)**  
+*For questions, presentations, or feedback, open an issue on GitHub.*
+
+</div>
