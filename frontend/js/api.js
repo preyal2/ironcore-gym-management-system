@@ -4,7 +4,7 @@
  */
 
 // Embedded Self-Contained Demo Mock Engine
-const MockDB = {
+var MockDB = window.MockDB || {
   getStorage(key, defaultVal) {
     try {
       const v = localStorage.getItem('ironcore_' + key);

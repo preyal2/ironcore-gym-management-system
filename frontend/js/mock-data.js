@@ -3,7 +3,7 @@
  * Enables 100% interactive, zero-error demo on static hosts like Netlify / GitHub Pages
  */
 
-const MockDB = {
+var MockDB = window.MockDB || {
   getStorage(key, defaultVal) {
     try {
       const v = localStorage.getItem('ironcore_' + key);
