@@ -1,0 +1,148 @@
+/* ==========================================================================
+   IRONCORE - AUTHENTICATION PAGES (Login / Register)
+   ========================================================================== */
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 59, 48, 0.12) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+              #080808;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 960px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 59, 48, 0.1);
+}
+
+.auth-banner {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.95)),
+              url('../assets/images/gym/hero_gym.jpg') center/cover no-repeat;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--border-color);
+  position: relative;
+}
+
+.auth-banner-content h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.auth-banner-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.auth-banner-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 32px 0;
+}
+.auth-banner-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #DDD;
+}
+.auth-banner-features li i {
+  color: var(--accent);
+}
+
+.auth-quote-box {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Auth Form Side */
+.auth-form-side {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-header {
+  margin-bottom: 28px;
+}
+.auth-header h2 {
+  font-size: 1.85rem;
+  margin-bottom: 6px;
+}
+.auth-header p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+/* Demo Credentials Quick-Fill Pills */
+.demo-accounts-pillbox {
+  background: rgba(255, 59, 48, 0.08);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 24px;
+}
+.demo-accounts-pillbox p {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+.demo-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.demo-btn {
+  background: #1F1F1F;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.demo-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.auth-footer a {
+  font-weight: 600;
+}

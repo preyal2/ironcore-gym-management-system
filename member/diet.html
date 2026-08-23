@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Diet Plan | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/cards.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Athlete Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-home"></i> Overview</a>
+        <a href="workout.html" class="menu-item"><i class="fas fa-clipboard-list"></i> My Workout Plan</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item active"><i class="fas fa-apple-alt"></i> My Diet Plan</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Fitness Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> My Attendance</a>
+
+        <span class="menu-category">Account & Coaching</span>
+        <a href="membership.html" class="menu-item"><i class="fas fa-id-card"></i> Membership & Pass</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payment History</a>
+        <a href="trainer.html" class="menu-item"><i class="fas fa-user-ninja"></i> My Trainer</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Book Session</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Leave Feedback</a>
+        <a href="profile.html" class="menu-item"><i class="fas fa-user-cog"></i> My Profile</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">M</div>
+          <div class="user-info">
+            <div class="name user-name-display">Preyal Modi</div>
+            <div class="role user-role-display">MEMBER</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>My Nutrition & Meal Plan</h3>
+            <p>Personalized daily macronutrient and meal timing schedule</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <div id="member-diet-display">
+          <!-- Diet Hero -->
+          <div class="dashboard-hero-banner mb-4">
+            <div>
+              <span class="badge badge-success mb-2" id="member-diet-goal-badge">Muscle Building</span>
+              <h2 style="font-size:1.6rem;color:#FFF;" id="member-diet-plan-title">High Protein Muscle Fuel Plan</h2>
+              <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:4px;" id="member-diet-desc">
+                High biological value protein with complex carbohydrates and essential fats.
+              </p>
+            </div>
+            <div class="countdown-box">
+              <div class="days-num" id="member-diet-calories-badge" style="font-size:1.6rem;">2,800</div>
+              <div class="days-lbl">Target kcal/day</div>
+            </div>
+          </div>
+
+          <!-- Meal Breakdown Grid -->
+          <h3 class="mb-3" style="font-size:1.2rem;">Daily Meal Schedule</h3>
+          <div class="diet-meals-grid" id="member-diet-meals-container">
+            <div class="text-center w-100"><div class="spinner"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/diet.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['member']);
+      if (user) {
+        Diet.loadMemberDietPlan(user.details?.member_id);
+      }
+    });
+  </script>
+</body>
+</html>

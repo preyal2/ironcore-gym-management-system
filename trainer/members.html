@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assigned Clients | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Trainer Portal</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-chart-pie"></i> Overview</a>
+        <a href="members.html" class="menu-item active"><i class="fas fa-users"></i> Assigned Members</a>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workout Plans</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Templates</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Floor Attendance</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+        <a href="announcements.html" class="menu-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="notifications.html" class="menu-item"><i class="fas fa-bell"></i> Notifications</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">T</div>
+          <div class="user-info">
+            <div class="name user-name-display">Coach Rahul</div>
+            <div class="role user-role-display">COACH</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>My Coaching Clients</h3>
+            <p>Athletes and members currently assigned to your training roster</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <div class="search-filter-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search assigned clients..." oninput="Members.filterTable(this.value)">
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Member Code</th>
+                <th>Client Name</th>
+                <th>Phone</th>
+                <th>Goal</th>
+                <th>Plan Tier</th>
+                <th>Status</th>
+                <th>Inspect</th>
+              </tr>
+            </thead>
+            <tbody id="members-tbody">
+              <tr><td colspan="7" class="text-center"><div class="spinner"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/members.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await Auth.checkSession(['trainer']);
+      if (user) {
+        const trainerId = user.details?.trainer_id;
+        Members.loadMembers({ trainer_id: trainerId });
+      }
+    });
+  </script>
+</body>
+</html>

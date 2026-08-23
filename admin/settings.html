@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Settings | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <span class="menu-category">Main Menu</span>
+        <a href="dashboard.html" class="menu-item"><i class="fas fa-chart-pie"></i> Dashboard</a>
+        <a href="members.html" class="menu-item"><i class="fas fa-users"></i> Members</a>
+        <a href="trainers.html" class="menu-item"><i class="fas fa-user-ninja"></i> Trainers</a>
+        <a href="memberships.html" class="menu-item"><i class="fas fa-id-card"></i> Memberships</a>
+        <a href="payments.html" class="menu-item"><i class="fas fa-receipt"></i> Payments</a>
+        <a href="attendance.html" class="menu-item"><i class="fas fa-calendar-check"></i> Attendance</a>
+
+        <span class="menu-category">Fitness Modules</span>
+        <a href="workouts.html" class="menu-item"><i class="fas fa-clipboard-list"></i> Workouts</a>
+        <a href="exercises.html" class="menu-item"><i class="fas fa-dumbbell"></i> Exercise Library</a>
+        <a href="diet.html" class="menu-item"><i class="fas fa-apple-alt"></i> Diet Plans</a>
+        <a href="progress.html" class="menu-item"><i class="fas fa-chart-line"></i> Member Progress</a>
+        <a href="appointments.html" class="menu-item"><i class="fas fa-clock"></i> Appointments</a>
+
+        <span class="menu-category">Communication & Reports</span>
+        <a href="announcements.html" class="menu-item"><i class="fas fa-bullhorn"></i> Announcements</a>
+        <a href="feedback.html" class="menu-item"><i class="fas fa-star"></i> Feedback & Reviews</a>
+        <a href="reports.html" class="menu-item"><i class="fas fa-file-invoice"></i> Reports & Export</a>
+        <a href="settings.html" class="menu-item active"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="Auth.logout()">
+          <div class="user-avatar user-avatar-text">A</div>
+          <div class="user-info">
+            <div class="name user-name-display">Administrator</div>
+            <div class="role user-role-display">ADMIN</div>
+          </div>
+          <i class="fas fa-sign-out-alt text-muted"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="header-toggle-btn"><i class="fas fa-bars"></i></button>
+          <div class="header-greeting">
+            <h3>Gym Profile & System Settings</h3>
+            <p>Configure gym contact information, receipt headers, and application defaults</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="header-action-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="page-body">
+        
+        <div class="glass-card mb-4" style="max-width:800px;">
+          <h3 class="mb-3"><i class="fas fa-building text-accent"></i> Gym Information</h3>
+          <form onsubmit="event.preventDefault(); showToast('Settings saved successfully', 'success')">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Gym Organization Name</label>
+                <input type="text" class="form-control" value="IRONCORE FITNESS CENTER" required>
+              </div>
+              <div class="form-group">
+                <label>Tagline / Motto</label>
+                <input type="text" class="form-control" value="TRAIN HARD. STAY STRONG. TRACK PROGRESS.">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Contact Phone</label>
+                <input type="text" class="form-control" value="+91 98765 00000">
+              </div>
+              <div class="form-group">
+                <label>Contact Email</label>
+                <input type="email" class="form-control" value="contact@ironcore.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Facility Address</label>
+              <input type="text" class="form-control" value="Level 4, Titanium Square, Gym Avenue, Ahmedabad, Gujarat 380015">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Default Currency Symbol</label>
+                <input type="text" class="form-control" value="₹ (INR)">
+              </div>
+              <div class="form-group">
+                <label>Expiring Alert Threshold</label>
+                <input type="number" class="form-control" value="14">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update System Settings</button>
+          </form>
+        </div>
+
+        <div class="glass-card" style="max-width:800px;">
+          <h3 class="mb-3"><i class="fas fa-database text-accent"></i> Database & Environment Status</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;">Running backend with PHP 8+ and PDO database abstraction.</p>
+          <div class="d-flex gap-3">
+            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Database Connected</span>
+            <span class="badge badge-info"><i class="fas fa-shield-alt"></i> BCrypt Passwords</span>
+            <span class="badge badge-primary"><i class="fas fa-file-code"></i> REST JSON APIs</span>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Auth.checkSession(['admin']);
+    });
+  </script>
+</body>
+</html>

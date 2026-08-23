@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Registration | IRONCORE GYM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-container" style="max-width:1040px;">
+      
+      <!-- Showcase Side -->
+      <div class="auth-banner">
+        <a href="index.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+          <span>IRON<span class="accent">CORE</span></span>
+        </a>
+
+        <div class="auth-banner-content">
+          <h2>JOIN THE IRONCORE REVOLUTION.</h2>
+          <p>Sign up in under 60 seconds to claim your membership pass, personalized training plans, and fitness dashboard.</p>
+
+          <ul class="auth-banner-features">
+            <li><i class="fas fa-check-circle"></i> Instant Member ID Generation</li>
+            <li><i class="fas fa-check-circle"></i> Automated First Month Activation</li>
+            <li><i class="fas fa-check-circle"></i> Free Beginner Assessment Included</li>
+          </ul>
+
+          <div class="auth-quote-box">
+            "Your fitness journey starts with a single step. Let's make every rep count."
+          </div>
+        </div>
+
+        <div style="font-size:0.8rem;color:var(--text-muted);">
+          &copy; 2025 IRONCORE Fitness Center
+        </div>
+      </div>
+
+      <!-- Form Side -->
+      <div class="auth-form-side">
+        <div class="auth-header">
+          <h2>Create Member Account</h2>
+          <p>Fill in your basic information to get registered.</p>
+        </div>
+
+        <form id="register-form" onsubmit="event.preventDefault(); handleRegister(this)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-name">Full Name *</label>
+              <input type="text" id="reg-name" name="name" class="form-control" placeholder="e.g. Preyal Modi" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Email Address *</label>
+              <input type="email" id="reg-email" name="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-phone">Phone Number *</label>
+              <input type="tel" id="reg-phone" name="phone" class="form-control" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-gender">Gender</label>
+              <select id="reg-gender" name="gender" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-goal">Fitness Goal</label>
+              <select id="reg-goal" name="fitness_goal" class="form-control">
+                <option value="Muscle Building">💪 Muscle Building / Hypertrophy</option>
+                <option value="Fat Loss">🔥 Fat Loss / Shred</option>
+                <option value="Increase Strength">🏋️ Increase Strength & Power</option>
+                <option value="Improve Endurance">🏃 Improve Cardio & Endurance</option>
+                <option value="General Fitness">❤️ General Health & Fitness</option>
+                <option value="Improve Mobility">🧘 Mobility & Posture</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reg-plan">Select Membership Tier</label>
+              <select id="reg-plan" name="plan_id" class="form-control">
+                <option value="1">Basic Monthly (₹1,000 / Mo)</option>
+                <option value="2">Standard 3-Months (₹2,500 / 3 Mos)</option>
+                <option value="3">Premium 6-Months (₹4,500 / 6 Mos)</option>
+                <option value="4" selected>Pro Annual (₹8,000 / Yr)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-password">Create Password *</label>
+              <input type="password" id="reg-password" name="password" class="form-control" placeholder="At least 6 characters" minlength="6" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-confirm">Confirm Password *</label>
+              <input type="password" id="reg-confirm" name="confirm_password" class="form-control" placeholder="••••••••" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:12px;">
+            <i class="fas fa-user-plus"></i> Complete Registration
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Already a member? <a href="login.html">Sign in here</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Pre-select plan if passed in query string ?plan=X
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const plan = urlParams.get('plan');
+      if (plan) {
+        const select = document.getElementById('reg-plan');
+        if (select) select.value = plan;
+      }
+    });
+
+    function handleRegister(form) {
+      if (form.password.value !== form.confirm_password.value) {
+        showToast('Passwords do not match. Please verify.', 'error');
+        return;
+      }
+
+      Auth.register({
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        gender: form.gender.value,
+        fitness_goal: form.fitness_goal.value,
+        plan_id: form.plan_id.value,
+        password: form.password.value
+      });
+    }
+  </script>
+</body>
+</html>

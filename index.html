@@ -3,16 +3,437 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=frontend/index.html">
-  <title>Redirecting to IRONCORE GYM...</title>
-  <script>
-    window.location.replace("frontend/index.html");
-  </script>
+  <title>IRONCORE GYM | Train Hard. Stay Strong. Track Progress.</title>
+  <meta name="description" content="IRONCORE is a premium modern gym management & personal fitness platform with advanced workout tracking, nutrition, trainer coaching, and seamless membership management.">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core & Landing CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body style="background:#080808;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
-  <div style="text-align:center;">
-    <h2 style="color:#FF3B30;">IRONCORE GYM</h2>
-    <p>Redirecting to portal... <a href="frontend/index.html" style="color:#FF6B35;">Click here if not redirected</a></p>
-  </div>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="landing-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+        <span>IRON<span class="accent">CORE</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#plans">Memberships</a></li>
+        <li><a href="#trainers">Trainers</a></li>
+        <li><a href="#reviews">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <button class="btn btn-outline btn-sm" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <a href="login.html" class="btn btn-outline btn-sm">Member Portal</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Join Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-fire"></i> THE NEXT-GEN FITNESS PLATFORM
+        </div>
+        <h1 class="hero-title">
+          BUILD YOUR <span class="glow">STRENGTH.</span>
+        </h1>
+        <p class="hero-subtitle">
+          A smarter, modern way to manage your workouts, personal trainers, custom nutrition charts, and daily fitness progress.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="register.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-bolt"></i> Join IronCore Now
+          </a>
+          <a href="#plans" class="btn btn-secondary btn-lg">
+            <i class="fas fa-id-card"></i> Explore Memberships
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <h4>250+</h4>
+            <p>Active Members</p>
+          </div>
+          <div class="hero-stat-item">
+            <h4>100%</h4>
+            <p>Certified Coaches</p>
+          </div>
+          <div class="hero-stat-item">
+            <h4>24/7</h4>
+            <p>Digital Check-In</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero-visual">
+        <div class="hero-visual-card">
+          <div class="hero-visual-graphic">
+            <div class="hero-floating-badge">
+              <div class="logo-icon" style="width:32px;height:32px;font-size:0.9rem;"><i class="fas fa-heartbeat"></i></div>
+              <div>
+                <strong style="color:#FFF;font-size:0.9rem;">IronCore Hypertrophy Split</strong>
+                <p style="font-size:0.75rem;color:var(--accent);">Chest + Triceps • 4 Sets × 10 Reps</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-between align-center" style="margin-top:20px;">
+            <div>
+              <span class="badge badge-active"><i class="fas fa-check-circle"></i> Daily Streak</span>
+              <p style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">14 Consecutive Days Active</p>
+            </div>
+            <a href="login.html" class="btn btn-sm btn-primary">Login & Track</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section" style="background:#0B0B0B;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why IronCore</span>
+        <h2>ENGINEERED FOR SERIOUS RESULTS</h2>
+        <p>Whether your goal is muscle hypertrophy, fat loss, athletic conditioning, or general vitality, IronCore delivers the infrastructure and tools you need.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-dumbbell"></i></div>
+          <h3>World-Class Equipment</h3>
+          <p>Olympic competition barbells, calibrated steel plates, heavy dumbbells up to 60kg, functional turf, and specialized cable stations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-user-ninja"></i></div>
+          <h3>Expert Personal Trainers</h3>
+          <p>CSCS strength coaches and certified sports nutritionists ready to guide your form, programming, and periodization.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Seamless Portal & QR Entry</h3>
+          <p>Access your workout splits, log body measurements, check in with digital QR badges, and book 1-on-1 trainer appointments effortlessly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Core Capabilities</span>
+        <h2>EVERYTHING IN ONE POWERFUL SYSTEM</h2>
+        <p>A unified experience tailored for Members, Coaches, and Gym Management.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-clipboard-list"></i></div>
+          <h3>💪 Workout Management</h3>
+          <p>Explore full exercise libraries with target muscle groups, sets, reps, rest timers, and interactive completion check-offs.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-apple-alt"></i></div>
+          <h3>🥗 Custom Diet Plans</h3>
+          <p>Personalized daily macronutrient templates for Breakfast, Lunch, Pre-Workout Snacks, and Dinner.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-chart-line"></i></div>
+          <h3>📊 Progress Tracking</h3>
+          <p>Interactive Chart.js visualizations tracking body weight, waist, chest, arm measurements, and fitness streak records.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-qrcode"></i></div>
+          <h3>📅 Digital Attendance</h3>
+          <p>Instant check-in and check-out logs with live capacity monitoring and monthly consistency percentages.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-receipt"></i></div>
+          <h3>💳 Transparent Billing</h3>
+          <p>Automated payment tracking, instant PDF-style printable payment receipts, and membership renewal countdowns.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="fas fa-calendar-check"></i></div>
+          <h3>🤝 Trainer Appointments</h3>
+          <p>Direct appointment booking with coaches for 1-on-1 technique assessment and custom program reviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Plans Section -->
+  <section id="plans" class="section" style="background:#0A0A0A;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Membership Tiers</span>
+        <h2>INVEST IN YOUR TRANSFORMATION</h2>
+        <p>Transparent, flexible membership packages designed to suit every commitment level.</p>
+      </div>
+
+      <div class="pricing-grid" id="landing-plans-container">
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+          <div>
+            <h3 class="plan-name">Basic Monthly</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);">Standard gym floor access with locker facilities.</p>
+            <div class="plan-price-box">
+              <span class="currency">₹</span>
+              <span class="amount">1,000</span>
+              <span class="period">/ 1 Month</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fas fa-check"></i> Full Gym Floor Access</li>
+              <li><i class="fas fa-check"></i> Standard Locker & Shower</li>
+              <li><i class="fas fa-check"></i> 1 Baseline Fitness Assessment</li>
+              <li><i class="fas fa-check"></i> Mobile Check-in Pass</li>
+            </ul>
+          </div>
+          <a href="register.html?plan=1" class="btn btn-outline w-100">Get Started</a>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="pricing-card">
+          <div>
+            <h3 class="plan-name">Standard 3-Months</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);">Popular choice for consistent beginners building habits.</p>
+            <div class="plan-price-box">
+              <span class="currency">₹</span>
+              <span class="amount">2,500</span>
+              <span class="period">/ 3 Months</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fas fa-check"></i> Full Gym Floor Access</li>
+              <li><i class="fas fa-check"></i> Locker & Shower Facilities</li>
+              <li><i class="fas fa-check"></i> 1 Personal Training Session</li>
+              <li><i class="fas fa-check"></i> Custom Diet Consultation</li>
+              <li><i class="fas fa-check"></i> Monthly Body Composition Scan</li>
+            </ul>
+          </div>
+          <a href="register.html?plan=2" class="btn btn-outline w-100">Get Started</a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+          <div>
+            <h3 class="plan-name">Premium 6-Months</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);">Comprehensive package with trainer perks and nutrition.</p>
+            <div class="plan-price-box">
+              <span class="currency">₹</span>
+              <span class="amount">4,500</span>
+              <span class="period">/ 6 Months</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fas fa-check"></i> All Floor & Cardio Access</li>
+              <li><i class="fas fa-check"></i> Steam & Sauna Access</li>
+              <li><i class="fas fa-check"></i> 3 Personal Training Sessions</li>
+              <li><i class="fas fa-check"></i> Monthly Custom Nutrition Charts</li>
+              <li><i class="fas fa-check"></i> 2 Free Guest Passes / Month</li>
+            </ul>
+          </div>
+          <a href="register.html?plan=3" class="btn btn-outline w-100">Get Started</a>
+        </div>
+
+        <!-- Pro Annual Plan (Featured) -->
+        <div class="pricing-card featured">
+          <div class="pricing-ribbon">Most Popular</div>
+          <div>
+            <h3 class="plan-name">Pro Annual</h3>
+            <p style="font-size:0.85rem;color:var(--text-muted);">The ultimate VIP pass for dedicated athletes.</p>
+            <div class="plan-price-box">
+              <span class="currency">₹</span>
+              <span class="amount">8,000</span>
+              <span class="period">/ 1 Year</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fas fa-check"></i> Unlimited 24/7 Floor Access</li>
+              <li><i class="fas fa-check"></i> Dedicated Locker & Sauna</li>
+              <li><i class="fas fa-check"></i> 6 1-on-1 PT Coaching Sessions</li>
+              <li><i class="fas fa-check"></i> Custom Nutrition & Macro Matrix</li>
+              <li><i class="fas fa-check"></i> Free IronCore Merchandise Kit</li>
+            </ul>
+          </div>
+          <a href="register.html?plan=4" class="btn btn-primary w-100">Join Pro Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trainers Section -->
+  <section id="trainers" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Coaches</span>
+        <h2>MEET THE IRONCORE COACHING TEAM</h2>
+        <p>Certified experts committed to elevating your physical conditioning and performance.</p>
+      </div>
+
+      <div class="trainers-grid">
+        <div class="trainer-showcase-card">
+          <div class="trainer-img-holder"><i class="fas fa-user-shield"></i></div>
+          <div class="trainer-info-holder">
+            <h4>Rahul Patel</h4>
+            <div class="spec">Strength & Hypertrophy Coach</div>
+            <div class="exp"><i class="fas fa-medal"></i> 8 Years Coaching Experience</div>
+          </div>
+        </div>
+
+        <div class="trainer-showcase-card">
+          <div class="trainer-img-holder"><i class="fas fa-running"></i></div>
+          <div class="trainer-info-holder">
+            <h4>Aarav Shah</h4>
+            <div class="spec">Functional & Cross-Training</div>
+            <div class="exp"><i class="fas fa-medal"></i> 6 Years Coaching Experience</div>
+          </div>
+        </div>
+
+        <div class="trainer-showcase-card">
+          <div class="trainer-img-holder"><i class="fas fa-spa"></i></div>
+          <div class="trainer-info-holder">
+            <h4>Meera Joshi</h4>
+            <div class="spec">Mobility & Posture Specialist</div>
+            <div class="exp"><i class="fas fa-medal"></i> 5 Years Coaching Experience</div>
+          </div>
+        </div>
+
+        <div class="trainer-showcase-card">
+          <div class="trainer-img-holder"><i class="fas fa-fire-alt"></i></div>
+          <div class="trainer-info-holder">
+            <h4>Karan Desai</h4>
+            <div class="spec">Cardio & Fat Loss Coach</div>
+            <div class="exp"><i class="fas fa-medal"></i> 7 Years Coaching Experience</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="reviews" class="section" style="background:#090909;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Success Stories</span>
+        <h2>WHAT OUR MEMBERS SAY</h2>
+        <p>Real members achieving real physical transformations at IronCore.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="review-quote">"IronCore completely changed my relationship with fitness. Coach Rahul corrected my squat mechanics and I've gained 4kg of lean muscle in 3 months."</p>
+          <div class="review-author">
+            <div class="review-avatar">P</div>
+            <div>
+              <strong style="color:#FFF;font-size:0.95rem;">Preyal Modi</strong>
+              <p style="font-size:0.78rem;color:var(--text-muted);">Pro Annual Member</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="review-quote">"The web dashboard is super smooth! I love checking in at the front desk, marking my sets completed on my phone, and watching my weight drop steadily."</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div>
+              <strong style="color:#FFF;font-size:0.95rem;">Aarav Patel</strong>
+              <p style="font-size:0.78rem;color:var(--text-muted);">Standard 3-Months Member</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="review-quote">"Clean facilities, friendly coaches, and top-tier equipment. Best gym environment in the city hands down."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <strong style="color:#FFF;font-size:0.95rem;">Meera J.</strong>
+              <p style="font-size:0.78rem;color:var(--text-muted);">Premium Member</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <footer id="contact" class="landing-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo mb-3">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <span>IRON<span class="accent">CORE</span></span>
+          </a>
+          <p style="font-size:0.9rem;line-height:1.6;margin-bottom:20px;">
+            TRAIN HARD. STAY STRONG. TRACK PROGRESS.<br>
+            Empowering individuals to achieve peak physical performance through state-of-the-art facilities and smart digital tracking.
+          </p>
+          <p style="font-size:0.85rem;color:var(--text-muted);"><i class="fas fa-map-marker-alt text-accent"></i> Level 4, Titanium Square, Gym Avenue, Ahmedabad</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:6px;"><i class="fas fa-phone text-accent"></i> +91 98765 00000 | <i class="fas fa-envelope text-accent"></i> support@ironcore.com</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About IronCore</a></li>
+            <li><a href="#features">Platform Features</a></li>
+            <li><a href="#plans">Membership Plans</a></li>
+            <li><a href="#trainers">Coaching Staff</a></li>
+            <li><a href="#reviews">Member Reviews</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Member Portal Login</a></li>
+            <li><a href="login.html">Trainer Dashboard</a></li>
+            <li><a href="login.html">Admin Management</a></li>
+            <li><a href="register.html">Create Member Account</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Operating Hours</h4>
+          <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:8px;"><strong>Monday - Saturday:</strong><br>05:30 AM – 10:30 PM</p>
+          <p style="font-size:0.88rem;color:var(--text-secondary);"><strong>Sunday:</strong><br>06:00 AM – 06:00 PM</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025-2026 IRONCORE GYM MANAGEMENT SYSTEM. All rights reserved.</p>
+        <p>Built with HTML5, CSS3, Vanilla JS, PHP & MySQL.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
