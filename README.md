@@ -2,69 +2,67 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-ironcoregym7.netlify.app-FF3B30?style=for-the-badge)](https://ironcoregym7.netlify.app/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-ironcoregym7.netlify.app-FF3B30?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ironcoregym7.netlify.app/)
 [![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://ironcoregym7.netlify.app/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 <br>
 
-**A full-stack, role-governed Gym Management & Athlete Performance Tracking Platform designed for modern fitness centers, personal trainers, and members.**
+**A full-stack, role-governed Gym Management & Athlete Performance Tracking Platform designed for modern fitness centers, personal trainers, and gym athletes.**
 
-[Explore Live Demo 🚀](https://ironcoregym7.netlify.app/) • [Report Bug 🐛](https://github.com/preyal2/ironcore-gym-management-system/issues) • [Request Feature 💡](https://github.com/preyal2/ironcore-gym-management-system/issues)
+[🚀 Explore Live Cloud Demo](https://ironcoregym7.netlify.app/) • [📖 Technical Documentation](#-system-architecture--directory-structure) • [🎓 Viva Voce Q&A](#-college-viva-voce--technical-defense-cheat-sheet)
 
 </div>
 
 ---
 
-## 🌟 Live Preview
+## 🌟 Live Cloud Deployment
 
 > 🔗 **Live Website URL**: **[https://ironcoregym7.netlify.app/](https://ironcoregym7.netlify.app/)**  
-> *Check out the fully animated landing page, pricing calculator, and role-based portal navigation online.*
+> *Fully interactive online preview featuring zero-error automatic client-side demo engine, animated hero presentation, interactive pricing matrix, and role-governed portals.*
 
 ---
 
-## 📖 Project Overview
+## 📖 Executive Summary & Value Proposition
 
-**IRONCORE** is a decoupled 3-tier enterprise fitness management system built to automate daily gym operations, member onboarding, personal training assignments, attendance tracking, and financial analytics. 
+**IRONCORE** is a decoupled 3-tier enterprise fitness management system engineered to automate daily gym workflows, athlete onboarding, personal training assignments, attendance tracking, and financial analytics. 
 
-Engineered with clean architectural boundaries between **Presentation (HTML5/CSS3/Vanilla JS)**, **Business Logic (PHP 8 REST APIs with PDO)**, and **Data Storage (MySQL relational schema with automatic SQLite dev fallback)**.
+### Why IRONCORE?
+- **Zero-Friction Separation of Concerns**: Strictly separated `frontend/` (Pure HTML5/CSS3/Vanilla JS ES6), `backend/` (PHP 8 REST JSON APIs with PDO), and `database/` (MySQL Relational Schema with 19 Normalized Tables & automated SQLite dev fallback).
+- **Dual Runtime Architecture**: Runs locally with full backend PHP/MySQL execution OR as a seamless cloud demo on static platforms like Netlify.
+- **Enterprise Dark Aesthetic**: Tailored with athletic dark mode (`#080808` background, `#141414` glassmorphic cards, flame red `#FF3B30` accents, responsive mobile bottom navigation).
 
 ---
 
-## 🎯 Key Capabilities & Role-Based Portals
+## 🎯 Role-Based Portals & Feature Matrix
 
-### 👑 1. Executive Admin Portal (15 Pages)
-- **Real-Time Analytics Dashboard**: Live KPI counters, monthly revenue growth curve (Chart.js), dynamic gym capacity gauge, and attendance trends.
-- **Member Management**: Comprehensive CRUD operations, search & multi-parameter filter (by plan, gender, goal, status), member profile inspector.
-- **Trainer & Staff Directory**: Trainer onboarding, client allocation matrix, certification records.
-- **Membership & Billing Engine**: Plan lifecycle management, auto-renewals, offline payment logging, and instant printable tax receipts.
-- **Digital QR & Turnstile Terminal**: Simulated check-in terminal with instant entry/exit logging and live floor capacity counter.
-- **Reporting & Auditing**: 1-click CSV report exports for member rosters, revenue breakdowns, and attendance logs.
-- **Broadcast Announcements & Review Moderation**: Global noticeboard with priority tags and member feedback aggregator.
-
-### 🥊 2. Personal Trainer Portal (11 Pages)
-- **Assigned Client Roster**: Direct access to assigned athletes, fitness goals, and intake metrics.
-- **Interactive Workout Builder**: Day-by-day training routine creator with exercise catalog linking, set/rep/rest configurations.
-- **Diet & Nutrition Planner**: Caloric target matrix and macronutrient distributions (Proteins, Carbs, Fats) across daily meals.
-- **Client Progress Monitor**: Anthropometric logs (Weight, Waist, Chest, Arms, Legs) with milestone tracking.
-- **1-on-1 Appointment Management**: Session request approval, decline, and scheduling workflow.
-
-### 🏃 3. Athlete & Member Portal (13 Pages)
-- **Personal Athlete Hub**: Active membership countdown banner, daily workout plan preview, and quick gym check-in.
-- **Digital Membership Pass**: Barcode pass generator, expiry tracker, and self-service plan renewal dialog.
-- **Dynamic Workout Tracker**: Step-by-step day schedule with interactive checkbox completion state for every set.
-- **Nutrition Matrix**: Meal timings, food item lists, and macro breakdown per meal.
-- **Body Recomposition Curves**: Weight and circumference visual analytics powered by Chart.js.
-- **Coach Consultations**: 1-click coaching session booking for form checks and nutrition reviews.
+| Feature / Capability | 👑 Admin Portal | 🥊 Trainer Portal | 🏃 Member Portal |
+| :--- | :---: | :---: | :---: |
+| **Real-time KPI Analytics Dashboard** | ✅ Full Financials | ✅ Assigned Roster | ✅ Athlete Goals |
+| **Interactive Chart.js Visualizations** | ✅ Revenue Trends | ❌ | ✅ Weight Progress |
+| **Member CRUD & Search Filters** | ✅ All Members | ✅ Assigned Only | ❌ |
+| **Staff & Trainer Management** | ✅ Complete | ❌ | ❌ |
+| **Membership Plans & Renewals** | ✅ Manage All | ❌ | ✅ Self-Renewal |
+| **Offline Invoicing & Printable Receipts** | ✅ Complete | ❌ | ✅ View Receipt |
+| **Digital QR / Turnstile Terminal** | ✅ Live Floor Gauge | ✅ Attendance Log | ✅ 1-Click Check-in |
+| **Workout Builder & Exercise Library** | ✅ Full Catalog | ✅ Create Routines | ✅ Set Checklist |
+| **Diet & Nutrition Macro Calculator** | ❌ | ✅ Assign Macros | ✅ Meal Matrix |
+| **Anthropometrics Progress Logs** | ❌ | ✅ Review Logs | ✅ Log Body Stats |
+| **1-on-1 Coaching Appointments** | ✅ Monitor | ✅ Approve/Decline | ✅ Book Sessions |
+| **CSV Report Data Exports** | ✅ Members & Billing | ❌ | ❌ |
+| **Noticeboard & Feedback Moderation** | ✅ Broadcast | ✅ View Notices | ✅ Submit Reviews |
 
 ---
 
 ## 🔑 Demo Login Credentials
 
-The application features **1-Click Quick Fill Demo Buttons** on the login page for instant role evaluation:
+The login page at **[`/login.html`](https://ironcoregym7.netlify.app/login.html)** includes **1-Click Quick Fill Demo Buttons** for instant evaluation:
 
 | Role | Portal URL | Demo Email | Password | Access Scope |
 | :--- | :--- | :--- | :--- | :--- |
@@ -91,7 +89,8 @@ IRONCORE-GYM/
 │   │   ├── modal.css             # Glass modals & printable invoice templates
 │   │   └── responsive.css        # Mobile bottom nav bar & responsive breakpoints
 │   ├── js/
-│   │   ├── api.js                # Centralized Fetch API client with automatic baseUrl
+│   │   ├── api.js                # Centralized Fetch API client with automatic baseUrl & MockDB
+│   │   ├── mock-data.js          # Static cloud mock engine for zero-error Netlify demo
 │   │   ├── main.js               # Global UI utilities, theme engine, toast notifications
 │   │   ├── auth.js               # Session guard, authentication & quick-fill handler
 │   │   ├── charts.js             # Chart.js visualization wrappers
@@ -147,7 +146,7 @@ IRONCORE-GYM/
 
 ### Method 1: Zero-Config Standalone PHP Server (Fastest)
 
-No Apache or XAMPP installation required! Run directly using the built-in PHP development server:
+Run the full-stack system locally with zero external installations:
 
 ```bash
 # 1. Clone the repository
@@ -160,7 +159,7 @@ cd ironcore-gym-management-system
 php -S 127.0.0.1:8000
 ```
 👉 Open your browser at: **`http://127.0.0.1:8000/frontend/index.html`**  
-*(The backend automatically creates and seeds a local SQLite database if MySQL is not running).*
+*(The backend auto-detects database availability and transparently bootstraps SQLite with sample records).*
 
 ---
 
@@ -179,6 +178,16 @@ php -S 127.0.0.1:8000
    - Click **Import** tab -> Select **`database/ironcore_gym.sql`** -> Click **Go**
 4. **Launch Application**:
    - Navigate to: **`http://localhost/ironcore-gym-management-system/frontend/index.html`**
+
+---
+
+## 🗄️ Relational Database Model (19 Tables)
+
+The database schema (`database/schema.sql`) adheres to 3NF (Third Normal Form) normalization:
+- **Core Entities**: `users`, `trainers`, `members`, `membership_plans`, `memberships`, `payments`, `attendance`
+- **Fitness & Routines**: `exercises`, `workout_plans`, `workout_exercises`, `workout_progress`
+- **Nutrition & Diet**: `diet_plans`, `diet_meals`, `member_diets`
+- **Tracking & Operations**: `progress`, `appointments`, `notifications`, `announcements`, `feedback`
 
 ---
 
@@ -208,13 +217,13 @@ php -S 127.0.0.1:8000
 
 ## 🛡️ License
 
-This project is licensed under the **MIT License** — feel free to use, modify, and distribute for academic and commercial purposes.
+This project is open source and available under the **[MIT License](LICENSE)**.
 
 ---
 
 <div align="center">
 
 **Developed with ❤️ by [Preyal Modi](https://github.com/preyal2)**  
-*For questions, presentations, or feedback, open an issue on GitHub.*
+*For college project presentations, vivas, or commercial inquiries, visit the [GitHub Repository](https://github.com/preyal2/ironcore-gym-management-system).*
 
 </div>
