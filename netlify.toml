@@ -1,13 +1,27 @@
-# Netlify configuration for IRONCORE GYM
 [build]
   publish = "frontend"
 
 [[redirects]]
-  from = "/"
-  to = "/index.html"
+  from = "/login"
+  to = "/login.html"
   status = 200
 
 [[redirects]]
-  from = "/*"
-  to = "/:splat"
+  from = "/register"
+  to = "/register.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/trainer"
+  to = "/trainer/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/member"
+  to = "/member/dashboard.html"
   status = 200
