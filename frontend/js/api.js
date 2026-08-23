@@ -1,10 +1,17 @@
 /**
  * IRONCORE - Centralized API Service
- * Handles fetch calls, relative path resolution, JSON parsing, error toasts
+ * Handles fetch calls, relative path resolution, and smart static cloud fallback (Netlify / GitHub Pages)
  */
 
 const API = {
-  // Automatically detects if we are running in XAMPP subdirectory or standalone
+  isStaticHost() {
+    const host = window.location.hostname.toLowerCase();
+    return host.includes('netlify.app') || 
+           host.includes('github.io') || 
+           host.includes('vercel.app') || 
+           window.location.protocol === 'file:';
+  },
+
   getBaseUrl() {
     const loc = window.location.pathname;
     const marker = '/frontend/';
@@ -16,6 +23,16 @@ const API = {
   },
 
   async request(endpoint, options = {}) {
+    // 1. If running on a static host (Netlify), use the client-side mock engine directly
+    if (this.isStaticHost() && typeof MockDB !== 'undefined') {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const res = MockDB.handle(endpoint, options);
+          resolve(res);
+        }, 150);
+      });
+    }
+
     const url = `${this.getBaseUrl()}${endpoint.startsWith('/') ? endpoint : '/' + endpoint}`;
     
     const config = {
@@ -37,8 +54,13 @@ const API = {
       const data = await response.json().catch(() => null);
 
       if (!response.ok) {
+        // If 404/405 occurs (e.g. static server fallback), use MockDB
+        if ((response.status === 404 || response.status === 405) && typeof MockDB !== 'undefined') {
+          console.warn(`[IRONCORE] Backend not found (${response.status}), falling back to Demo Mock Engine.`);
+          return MockDB.handle(endpoint, options);
+        }
+
         if (response.status === 401 && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('register.html') && !window.location.pathname.endsWith('index.html')) {
-          // Redirect to login if unauthorized
           const loginPath = window.location.pathname.includes('/admin/') || window.location.pathname.includes('/trainer/') || window.location.pathname.includes('/member/')
             ? '../login.html'
             : 'login.html';
@@ -50,6 +72,11 @@ const API = {
 
       return data;
     } catch (err) {
+      // Fallback for network failures on static deployments
+      if (typeof MockDB !== 'undefined') {
+        console.warn(`[IRONCORE] Fetch failed, falling back to Demo Mock Engine for ${endpoint}`);
+        return MockDB.handle(endpoint, options);
+      }
       console.error(`API Error [${endpoint}]:`, err);
       throw err;
     }
