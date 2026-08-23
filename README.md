@@ -2,21 +2,21 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-ironcoregym7.netlify.app-FF3B30?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ironcoregym7.netlify.app/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-preyal2.github.io-FF3B30?style=for-the-badge&logo=github&logoColor=white)](https://preyal2.github.io/ironcore-gym-management-system/)
 [![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://ironcoregym7.netlify.app/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Active-22C55E?style=for-the-badge&logo=githubpages&logoColor=white)](https://preyal2.github.io/ironcore-gym-management-system/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 <br>
 
 **A full-stack, role-governed Gym Management & Athlete Performance Tracking Platform designed for modern fitness centers, personal trainers, and gym athletes.**
 
-[🚀 Explore Live Cloud Demo](https://ironcoregym7.netlify.app/) • [📖 Technical Documentation](#-system-architecture--directory-structure) • [🎓 Viva Voce Q&A](#-college-viva-voce--technical-defense-cheat-sheet)
+[🚀 Explore Live Website](https://preyal2.github.io/ironcore-gym-management-system/) • [📖 Technical Documentation](#-system-architecture--directory-structure) • [🎓 Viva Voce Q&A](#-college-viva-voce--technical-defense-cheat-sheet)
 
 </div>
 
@@ -24,7 +24,7 @@
 
 ## 🌟 Live Cloud Deployment
 
-> 🔗 **Live Website URL**: **[https://ironcoregym7.netlify.app/](https://ironcoregym7.netlify.app/)**  
+> 🔗 **Live Website URL**: **[https://preyal2.github.io/ironcore-gym-management-system/](https://preyal2.github.io/ironcore-gym-management-system/)**  
 > *Fully interactive online preview featuring zero-error automatic client-side demo engine, animated hero presentation, interactive pricing matrix, and role-governed portals.*
 
 ---
