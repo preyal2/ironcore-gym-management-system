@@ -63,8 +63,14 @@ const Auth = {
       if (res.success) {
         showToast(res.message, 'success');
         setTimeout(() => {
-          window.location.href = res.data.redirect || 'index.html';
-        }, 800);
+          let target = res.data?.redirect || 'member/dashboard.html';
+          if (target.startsWith('/frontend/')) {
+            target = target.replace('/frontend/', '');
+          } else if (target.startsWith('/')) {
+            target = target.substring(1);
+          }
+          window.location.href = target;
+        }, 600);
       } else {
         showToast(res.message || 'Login failed', 'error');
       }
@@ -79,8 +85,14 @@ const Auth = {
       if (res.success) {
         showToast(res.message, 'success');
         setTimeout(() => {
-          window.location.href = res.data.redirect || 'member/dashboard.html';
-        }, 1000);
+          let target = res.data?.redirect || 'member/dashboard.html';
+          if (target.startsWith('/frontend/')) {
+            target = target.replace('/frontend/', '');
+          } else if (target.startsWith('/')) {
+            target = target.substring(1);
+          }
+          window.location.href = target;
+        }, 800);
       } else {
         showToast(res.message || 'Registration failed', 'error');
       }
